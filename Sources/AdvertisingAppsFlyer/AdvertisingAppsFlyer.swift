@@ -1,6 +1,6 @@
 import AppsFlyerLib
 
-public struct GDAppsFlyer {
+public final class GDAppsFlyer {
     
     private let appsFlyerDelegate = AppsFlyerDelegate()
     
