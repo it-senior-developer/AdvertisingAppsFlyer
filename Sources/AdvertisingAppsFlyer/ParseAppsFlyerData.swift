@@ -25,4 +25,6 @@ final public class ParseAppsFlyerData {
         }
         self.urlParameters?(parameters)
     }
+    
+    public init(){}
 }
