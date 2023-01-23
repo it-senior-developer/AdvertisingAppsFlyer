@@ -1,4 +1,5 @@
 import AppsFlyerLib
+import AppTrackingTransparency
 
 public final class GDAppsFlyer {
     
@@ -28,6 +29,32 @@ public final class GDAppsFlyer {
     public func setDebag(isDebug: Bool){
         AppsFlyerLib.shared().isDebug = isDebug
     }
+    
+    public func start(){
+        AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: 60)
+        AppsFlyerLib.shared().start()
+        requestTrackingAuthorization()
+    }
+    
+    public func requestTrackingAuthorization() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { (status) in
+                switch status {
+                    case .denied:
+                        print("AuthorizationSatus is denied")
+                    case .notDetermined:
+                        print("AuthorizationSatus is notDetermined")
+                    case .restricted:
+                        print("AuthorizationSatus is restricted")
+                    case .authorized:
+                        print("AuthorizationSatus is authorized")
+                    @unknown default:
+                        fatalError("Invalid authorization status")
+                }
+            }
+        }
+    }
 
     public init(){}
 }
+//https://app.appsflyer.com/id1662068962?pid=conversionTest1&idfa=
