@@ -7,7 +7,7 @@
 import AppsFlyerLib
 import Foundation
 
-final class AppsFlyerDelegate: NSObject, AppsFlyerLibDelegate {
+final public class AppsFlyerDelegate: NSObject, AppsFlyerLibDelegate {
     
     private let parseAppsFlyerData = ParseAppsFlyerData()
     

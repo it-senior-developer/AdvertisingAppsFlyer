@@ -6,7 +6,7 @@
 //
 import Foundation
 
-final class ParseAppsFlyerData {
+final public class ParseAppsFlyerData {
     
     public var urlParameters: ((String?) -> Void)?
     
