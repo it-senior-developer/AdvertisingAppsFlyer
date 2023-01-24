@@ -5,8 +5,13 @@ public final class GDAppsFlyer {
     
     private let appsFlyerDelegate = AppsFlyerDelegate()
     private let appsFlyerDeepLinkDelegate = AppsFlyerDeepLinkDelegate()
+    private let parseAppsFlyerData = ParseAppsFlyerData()
+    
+    public var urlParameters: ((String?) -> Void)?
+    public var installCompletion: ((Install?) -> Void)?
     
     public func setup(appID: String, devKey: String, interval: Double = 120){
+        self.setup()
         AppsFlyerLib.shared().waitForATTUserAuthorization(timeoutInterval: interval)
         AppsFlyerLib.shared().appsFlyerDevKey     = devKey
         AppsFlyerLib.shared().appleAppID          = appID
@@ -53,6 +58,11 @@ public final class GDAppsFlyer {
                 }
             }
         }
+    }
+    
+    private func setup(){
+        installCompletion = appsFlyerDelegate.installCompletion
+        urlParameters = appsFlyerDelegate.urlParameters
     }
 
     public init(){}

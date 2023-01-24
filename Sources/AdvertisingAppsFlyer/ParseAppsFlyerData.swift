@@ -6,12 +6,12 @@
 //
 import Foundation
 
-final public class ParseAppsFlyerData {
+final class ParseAppsFlyerData {
     
-    public var urlParameters: ((String?) -> Void)?
-    public var installCompletion: ((Install?) -> Void)?
+    var urlParameters: ((String?) -> Void)?
+    var installCompletion: ((Install?) -> Void)?
     
-    public func parseCampaign(_ conversionInfo: [AnyHashable : Any]) {
+    func parseCampaign(_ conversionInfo: [AnyHashable : Any]) {
         if let afStatus = conversionInfo["af_status"] as? String {
             let install = Install(rawValue: afStatus)
             installCompletion?(install)
@@ -28,7 +28,7 @@ final public class ParseAppsFlyerData {
         self.urlParameters?(parameters)
     }
     
-    public init(){}
+    init(){}
 }
 
 public enum Install: String {
