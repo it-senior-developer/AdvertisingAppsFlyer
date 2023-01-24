@@ -9,6 +9,7 @@ public final class GDAppsFlyer {
     
     public var urlParameters: ((String?) -> Void)?
     public var installCompletion: ((Install?) -> Void)?
+    public var completionDeepLinkResult: ((DeepLinkResult) -> Void)?
     
     public func setup(appID: String, devKey: String, interval: Double = 120){
         self.setup()
@@ -61,6 +62,7 @@ public final class GDAppsFlyer {
     }
     
     private func setup(){
+        appsFlyerDeepLinkDelegate.completionDeepLinkResult = completionDeepLinkResult
         appsFlyerDelegate.installCompletion = installCompletion
         appsFlyerDelegate.urlParameters = urlParameters
     }

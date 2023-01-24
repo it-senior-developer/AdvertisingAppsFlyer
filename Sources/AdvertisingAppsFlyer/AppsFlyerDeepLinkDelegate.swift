@@ -7,10 +7,10 @@
 import AppsFlyerLib
 import Foundation
 
-final public class AppsFlyerDeepLinkDelegate: NSObject, DeepLinkDelegate {
+final class AppsFlyerDeepLinkDelegate: NSObject, DeepLinkDelegate {
     
-    public var completion: ((Any?) -> Void)?
-    public var completionDeepLinkResult: ((DeepLinkResult) -> Void)?
+    var completion: ((Any?) -> Void)?
+    var completionDeepLinkResult: ((DeepLinkResult) -> Void)?
     
     public func didResolveDeepLink(_ result: DeepLinkResult) {
         var fruitNameStr: String?
