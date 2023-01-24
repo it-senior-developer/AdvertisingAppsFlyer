@@ -61,8 +61,8 @@ public final class GDAppsFlyer {
     }
     
     private func setup(){
-        installCompletion = appsFlyerDelegate.installCompletion
-        urlParameters = appsFlyerDelegate.urlParameters
+        appsFlyerDelegate.installCompletion = installCompletion
+        appsFlyerDelegate.urlParameters = urlParameters
     }
 
     public init(){}
