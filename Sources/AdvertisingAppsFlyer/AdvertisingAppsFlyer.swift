@@ -69,4 +69,5 @@ public final class GDAppsFlyer {
 
     public init(){}
 }
-//https://app.appsflyer.com/id1662068962?pid=conversionTest1&idfa=
+//https://app.appsflyer.com/id1662068962?pid=conversionTest1&idfa=3E7D5A70-C304-4494-A12F-352A30E4BBB5
+

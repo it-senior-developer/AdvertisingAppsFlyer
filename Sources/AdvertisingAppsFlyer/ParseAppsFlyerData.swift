@@ -32,6 +32,15 @@ final class ParseAppsFlyerData {
 }
 
 public enum Install: String {
-    case organic = "Non-organic"
-    case nonOrganic = "Organic"
+    case organic = "Organic"
+    case nonOrganic = "Non-organic"
 }
+
+let parametersDictionary =
+[
+    "pid":"utm_source",
+    "af_channel":"utm_medium",
+    "c":"utm_campaign",
+    "af_adset":"utm_content",
+    "af_ad":"utm_term",
+]
