@@ -12,12 +12,21 @@ final class ParseAppsFlyerData {
     var installCompletion: ((Install?) -> Void)?
     
     func parseCampaign(_ conversionInfo: [AnyHashable : Any]) {
-        if let afStatus = conversionInfo["af_status"] as? String {
-            let install = Install(rawValue: afStatus)
-            installCompletion?(install)
+        switch afStatus(conversionInfo: conversionInfo) {
+            case .none:
+                installCompletion?(nil)
+            case .organic:
+                installCompletion?(.organic)
+            case .nonOrganic:
+                let parameters = self.createParameters(conversionInfo: conversionInfo)
+                installCompletion?(.nonOrganic(parameters))
         }
-        let parameters = self.createParameters(conversionInfo: conversionInfo)
-        print(parameters)
+    }
+    
+    private func afStatus(conversionInfo: [AnyHashable : Any]) -> AfStatus {
+        guard let afStatus = conversionInfo["af_status"] as? String else { return .none }
+        guard let status = AfStatus(rawValue: afStatus) else { return .none }
+        return status
     }
     
     private func createParameters(conversionInfo: [AnyHashable : Any]) -> String {
@@ -52,9 +61,15 @@ final class ParseAppsFlyerData {
     init(){}
 }
 
-public enum Install: String {
+public enum Install {
+    case organic
+    case nonOrganic(String)
+}
+
+public enum AfStatus: String {
     case organic = "Organic"
     case nonOrganic = "Non-organic"
+    case none
 }
 
 public enum Key: String {
