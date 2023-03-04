@@ -2,7 +2,7 @@
 //  AppsFlyerDelegate.swift
 //  
 //
-//  Created by Senior Developer on 25.07.2022.
+//  Created by Developer on 25.07.2022.
 //
 import AppsFlyerLib
 import Foundation
