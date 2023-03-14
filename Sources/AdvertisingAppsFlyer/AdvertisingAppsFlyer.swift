@@ -44,14 +44,22 @@ public final class GDAppsFlyer {
     
     public func requestTrackingAuthorization() {
         if #available(iOS 14, *) {
-            ATTrackingManager.requestTrackingAuthorization { (status) in
+            ATTrackingManager.requestTrackingAuthorization { [weak self] (status) in
+                guard let self = self else { return }
                 switch status {
                     case .denied:
                         print("AuthorizationSatus is denied")
+                        self.appsFlyerDelegate.installCompletion = nil
+                        self.installCompletion?(.nonOrganic(""))
                     case .notDetermined:
                         print("AuthorizationSatus is notDetermined")
+                        self.appsFlyerDelegate.installCompletion = nil
+                        self.installCompletion?(.nonOrganic(""))
+                        
                     case .restricted:
                         print("AuthorizationSatus is restricted")
+                        self.appsFlyerDelegate.installCompletion = nil
+                        self.installCompletion?(.nonOrganic(""))
                     case .authorized:
                         print("AuthorizationSatus is authorized")
                     @unknown default:
